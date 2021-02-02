@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Game } from './game';
+import { TicTacToe } from './container/ticTacToe';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
+    <TicTacToe />
   </React.StrictMode>,
   document.getElementById('root'),
 );

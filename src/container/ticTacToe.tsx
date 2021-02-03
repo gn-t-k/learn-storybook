@@ -1,9 +1,24 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Game } from '../components/game/game';
 import { useHandleBoard } from '../hooks/useHandleBoard';
 
 export const TicTacToe: FC = () => {
-  const { isXNext, status, changeStatus } = useHandleBoard();
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const {
+    isXNext,
+    setIsXNext,
+    status,
+    setStatus,
+    changeStatus,
+  } = useHandleBoard(history, setHistory);
 
-  return <Game {...{ isXNext, status, changeStatus }} />;
+  const changeHistory = (index: number) => {
+    setHistory(history.slice(0, index));
+    setStatus(history[index - 1]);
+    setIsXNext(index % 2 === 0);
+  };
+
+  return (
+    <Game {...{ isXNext, status, changeStatus, history, changeHistory }} />
+  );
 };
